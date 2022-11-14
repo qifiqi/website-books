@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <style>
+        /*********LoadingPage*************/
+
+        #loading {
+            position: absolute;
+            background-color: #FFF;: top: 0 px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+        }
+
+        #loading_bg {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        /
+        /
+        body {
+        / / background: #eaecfa;
+        / /
+        }
+
+        .loader {
+            width: 250px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            font-family: helvetica, arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: 900;
+            color: #ce4233;
+            letter-spacing: 0.2em;
+        }
+
+        .loader::before, .loader::after {
+            content: "";
+            display: block;
+            width: 15px;
+            height: 15px;
+            background: #ce4233;
+            position: absolute;
+            -webkit-animation: load .7s infinite alternate ease-in-out;
+            animation: load .7s infinite alternate ease-in-out;
+        }
+
+        .loader::before {
+            top: 0;
+        }
+
+        .loader::after {
+            bottom: 0;
+        }
+
+        @-webkit-keyframes load {
+            0% {
+                left: 0;
+                height: 30px;
+                width: 15px;
+            }
+            50% {
+                height: 8px;
+                width: 40px;
+            }
+            100% {
+                left: 235px;
+                height: 30px;
+                width: 15px;
+            }
+        }
+
+        @keyframes load {
+            0% {
+                left: 0;
+                height: 30px;
+                width: 15px;
+            }
+            50% {
+                height: 8px;
+                width: 40px;
+            }
+            100% {
+                left: 235px;
+                height: 30px;
+                width: 15px;
+            }
+        }
+
+        /********************************/
+
+    </style>
+
+    {% block css %}
+
+    {% endblock %}
+</head>
+<body>
+<div id="loading">
+    <div id="loading_bg">
+        <div class="loader">Loading...</div>
+    </div>
+</div>
+
+<nav class="navbar container navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'home' %}">HOME</a>
+        </div>
+        <p class="navbar-text">网站</p>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if requests.user.is_authenticated %}
+                    <li><a href="#">{{ requests.user.username }}</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                           aria-haspopup="true"
+                           aria-expanded="false">更多操作<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">修改密码</a></li>
+                            <li><a href="#">后台管理</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出登录</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'notebook:register' %}">注册</a></li>
+                    <li><a href="{% url 'notebook:login' %}">登录</a></li>
+                {% endif %}
+
+            </ul>
+            <form class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="文章">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+
+<nav class="navbar container navbar-fixed-bottom">
+    {% block bottom-content %}
+
+    {% endblock %}
+</nav>
+
+<script>
+    //Loading页面
+    document.onreadystatechange = function () {
+        if (document.readyState == "complete") {
+            loadingFade();
+        }
+    }
+
+    function loadingFade() {
+        var opacity = 1;
+        //var loadingPage=document.getElementById('loading');
+        var loadingBackground = document.getElementById('loading_bg');
+        var time = setInterval(function () {
+            if (opacity <= 0) {
+                clearInterval(time);
+                //loadingPage.remove();
+                $('#loading').remove();
+            }
+
+            loadingBackground.style.opacity = opacity;
+            opacity -= 0.4;
+        }, 100);
+    }
+
+</script>
+
+{% block js %}
+
+{% endblock %}
+</body>
+</html>
