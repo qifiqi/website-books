@@ -79,6 +79,8 @@
 
     <div class="div_container">
         <div class="login-wrapper">
+            <div ><a class="btn-primary btn-xs" href="{% url 'home' %}">home</a></div>
+
             <div class="header">Login</div>
             <div class="form-wrapper">
                 {% csrf_token %}
@@ -105,8 +107,8 @@
 
             $.ajax({
                 url: "",
-                type:"post",
-                dataType:"json",
+                type: "post",
+                dataType: "json",
                 data: {
                     "username": username,
                     "password": password,

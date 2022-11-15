@@ -23,11 +23,9 @@
             background-color: rgba(0, 0, 0, 0.7);
         }
 
-        /
-        /
         body {
-        / / background: #eaecfa;
-        / /
+            background: #eaecfa;
+
         }
 
         .loader {
@@ -148,19 +146,18 @@
             </ul>
             <form class="navbar-form navbar-right">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="文章">
+                    <input type="text" class="form-control" id="search_content" placeholder="文章">
                 </div>
-                <button type="submit" class="btn btn-default">搜索</button>
+                <button type="submit" class="btn btn-default" id="search">搜索</button>
             </form>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
 
-<div class="container">
+<div id="id_div_container">
     {% block content %}
 
     {% endblock %}
-
 </div>
 
 <nav class="navbar container navbar-fixed-bottom">
@@ -192,6 +189,27 @@
             opacity -= 0.4;
         }, 100);
     }
+
+    $("#search").click(function () {
+        var TextInput = $("#search_content").val()
+        if (TextInput.length > 0) {
+            $.ajax({
+                url: "{% url 'home' %}",
+                type: "post",
+                dataType: "json",
+                data: {
+                    "content": TextInput,
+                    "csrfmiddlewaretoken": "{{ csrf_token }}",
+                },
+                success: function (args) {
+
+                }
+            })
+        } else {
+            alert("要有搜索值才可以搜!!!")
+        }
+
+    })
 
 </script>
 
