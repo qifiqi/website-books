@@ -27,6 +27,8 @@ urlpatterns = [
 
     # 笔记页
     path('notebooks/', include(("notebooks.urls", "notebooks"), namespace="notebook")),
+    # 创意页面
+    path('creative_page/', include(("creative_page.urls", "creative_page"), namespace="creative_pages")),
 
 ]
 
