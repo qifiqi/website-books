@@ -89,20 +89,20 @@ DATABASES = {
     }
 }
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django_redis.cache.RedisCache',
-#         'LOCATION': 'redis://47.115.219.82:6380/1',  # redis所在服务器或容器ip地址
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#             "PASSWORD": "Fu@Qing.redis",  # 你设置的密码
-#         },
-#     },
-# }
-# # 缓存默认过期时间
-# REDIS_TIMEOUT = 24 * 60 * 60
-# CUBES_REDIS_TIMEOUT = 60 * 30
-# NEVER_REDIS_TIMEOUT = 365 * 24 * 60 * 60
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://47.115.219.82:6380/1',  # redis所在服务器或容器ip地址
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PASSWORD": "Fu@Qing.redis",  # 你设置的密码
+        },
+    },
+}
+# 缓存默认过期时间
+REDIS_TIMEOUT = 24 * 60 * 60
+CUBES_REDIS_TIMEOUT = 60 * 30
+NEVER_REDIS_TIMEOUT = 365 * 24 * 60 * 60
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -139,7 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+# ]
