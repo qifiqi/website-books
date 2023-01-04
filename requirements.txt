@@ -1,9 +1,12 @@
 Django==3.1.7
+django-redis
+djangorestframework
 matplotlib
 numpy
 pandas
 Pillow
 redis
 requests
-pymysql
+pyecharts
 mysqlclient
+pymysql

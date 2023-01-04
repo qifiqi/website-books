@@ -15,6 +15,7 @@ Including another URLconf
 """
 
 from notebooks.views import home
+from creative_page import views
 from django.contrib import admin
 from django.urls import path, include
 
@@ -24,6 +25,8 @@ urlpatterns = [
 
     # 首页
     path("", home.Home.as_view(), name="home"),
+    # 表白
+    path("xiaofu_xiaochen", views.xiaofu_xiaochen, name="xiaofu_xiaochen"),
 
     # 笔记页
     path('notebooks/', include(("notebooks.urls", "notebooks"), namespace="notebook")),

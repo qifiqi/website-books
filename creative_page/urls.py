@@ -10,5 +10,5 @@ from django.urls import path
 from creative_page import views
 
 urlpatterns = [
-    path("jtcsy", views.jtcsy),
+    path("jtcsy", views.jtcsy,name="jtcsy"),
 ]

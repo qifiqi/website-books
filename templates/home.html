@@ -1,4 +1,5 @@
 {% extends 'home_base.html' %}
+{% load static %}
 
 {% block css %}
     <style>
@@ -6,16 +7,23 @@
             padding-left: 5px;
             padding-right: 5px;
         }
+
+        .img-size-50 {
+            width: 50px;
+        }
     </style>
 {% endblock %}
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-lg-4">
-                <div class="panel panel-danger">
-                    <div class="panel-heading">Panel heading without title</div>
+                <div class="panel panel-danger" onclick=GoToPath("{% url 'creative_pages:jtcsy' %}")>
+                    <div class="panel-heading ">
+                        <img src="{% static 'img/home/今天吃啥子.gif' %}" alt="今天吃啥子" class="img-rounded img-size-50 ">
+                        <span class="text-center">今天吃啥子</span>
+                    </div>
                     <div class="panel-body">
-                        Panel content
+                        可以随机抽取今天吃什么，还支持自定义
                     </div>
                 </div>
             </div>
@@ -39,6 +47,17 @@
     </div>
 {% endblock %}
 
+{% block js %}
+    <script type="text/javascript">
+        const GoToPath = function (UrlPath) {
+            console.log(UrlPath)
+            let ConF = window.confirm("是否要跳转");
+            if (ConF) {
+                window.location.href = UrlPath
+            }
+        };
+    </script>
+{% endblock %}
 
 
 

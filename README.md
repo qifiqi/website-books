@@ -1,16 +1,17 @@
 # website-books
 
-#### 介绍
+## 介绍
 搭建我自己的个人网站
 
-#### 软件架构
+## 软件架构
 
-#### 安装教程
+## 安装教程
+### pip包安装说明
+- 在linux系统上安装`mysqlclient`之前要先在安装mysql-devel
+`yum -y install mysql-devel`
 
-#### 使用说明
+## 使用说明
 
-
-#### 特技
 
 ```python
 """
