@@ -13,33 +13,33 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
+from websiteBook import settings
 from notebooks.views import home
 from creative_page import views
 from django.contrib import admin
 from django.urls import path, include
 from django.views.static import serve
-from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import re_path  # 因为需要用到正则匹配所以导入它
 
 urlpatterns = [
-    # 后台管理
-    path('admin/', admin.site.urls),
+                  # 后台管理
+                  path('admin/', admin.site.urls),
 
-    # 首页
-    path("", home.Home.as_view(), name="home"),
-    # 表白
-    path("xiaofu_xiaochen", views.xiaofu_xiaochen, name="xiaofu_xiaochen"),
+                  # 首页
+                  path("", home.Home.as_view(), name="home"),
+                  # 表白
+                  path("xiaofu_xiaochen", views.xiaofu_xiaochen, name="xiaofu_xiaochen"),
 
-    # 笔记页
-    path('notebooks/', include(("notebooks.urls", "notebooks"), namespace="notebook")),
-    # 创意页面
-    path('creative_page/', include(("creative_page.urls", "creative_page"), namespace="creative_pages")),
-    # 静态文件加载问题
-    re_path('^stiaic/(?P<path>.*)', serve, {'document_root': settings.STATIC_ROOT}),  # 用于处理static里的文件
+                  # 笔记页
+                  path('notebooks/', include(("notebooks.urls", "notebooks"), namespace="notebook")),
+                  # 创意页面
+                  path('creative_page/', include(("creative_page.urls", "creative_page"), namespace="creative_pages")),
+                  # 静态文件加载问题
+                  re_path('^static/(?P<path>.*)', serve, {'document_root': settings.STATIC_ROOT}),  # 用于处理static里的文件
 
-    re_path('^media/(?P<path>.*)', serve, {'document_root': settings.MEDIA_ROOT}),  # 用于处理上传的文件
-]
+                  # re_path('^media/(?P<path>.*)', serve, {'document_root': settings.MEDIA_ROOT}),  # 用于处理上传的文件
+              ]
 
 """
                               _ooOoo_
