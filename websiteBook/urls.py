@@ -38,7 +38,7 @@ urlpatterns = [
                   # 静态文件加载问题
                   re_path('^static/(?P<path>.*)', serve, {'document_root': settings.STATIC_ROOT}),  # 用于处理static里的文件
 
-                  # re_path('^media/(?P<path>.*)', serve, {'document_root': settings.MEDIA_ROOT}),  # 用于处理上传的文件
+                  re_path('^media/(?P<path>.*)', serve, {'document_root': settings.MEDIA_ROOT}),  # 用于处理上传的文件
               ]
 
 """
