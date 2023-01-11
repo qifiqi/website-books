@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>爱心</title>
+    <title>小符喜欢小陈</title>
     <style>
         * {
             margin: 0;
@@ -79,8 +79,9 @@
     }
 
     function getText() {
+        /*
         var val = Math.random() * 10;
-        
+
         if (val > 1 && val <= 3) {
             return '爱你一辈子';
         } else if (val > 3 && val <= 5) {
@@ -90,6 +91,17 @@
         } else {
             return 'I Love You';
         }
+         */
+        var items = [
+            '爱你一辈子',
+            '喜欢小陈',
+            '想和小陈睡觉觉',
+            '小陈在干啥呀',
+            '小陈你想我了吗！',
+            '爱你小陈',
+        ];
+
+        return items[Math.floor(Math.random() * items.length)];
     }
 
     function Heart(type) {
